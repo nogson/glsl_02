@@ -121,7 +121,7 @@ window.onload = function () {
 };
 
 },{"./../shader/base.frag":2,"./../shader/base.vert":3}],2:[function(require,module,exports){
-module.exports = "#ifdef GL_ES\nprecision mediump float;\n#endif\n\nvarying vec2 vUv; \nuniform float time;\nuniform sampler2D tDiffuse;\nuniform vec2 resolution;\n\n\nvoid main( void ) \n{\n    \n    const float shakeLength = 0.1;\n    const float speed = 1.0;\n    const float shakeWidth = 0.01;\n\n    float offsetX = sin(gl_FragCoord.x * shakeLength + time * speed) * shakeWidth;\n    float offsetY = cos(gl_FragCoord.y * shakeLength + time * speed) * shakeWidth;\n\n    vec4 color = texture2D(tDiffuse, vec2(vUv.x + offsetX , vUv.y + offsetY));\n    gl_FragColor = color; \n}\n\n\n";
+module.exports = "#ifdef GL_ES\nprecision mediump float;\n#endif\n\nvarying vec2 vUv; \nuniform float time;\nuniform sampler2D tDiffuse;\nuniform vec2 resolution;\n\n\nvoid main( void ) \n{\n    \n    const float shakeLength = 0.1;\n    const float speed = 1.0;\n    const float shakeWidth = 0.005;\n\n    float offsetX = sin(gl_FragCoord.x * shakeLength + time * speed) * shakeWidth;\n    float offsetY = cos(gl_FragCoord.y * shakeLength + time * speed) * shakeWidth;\n\n    vec4 color = texture2D(tDiffuse, vec2(vUv.x + offsetX , vUv.y + offsetY));\n    gl_FragColor = color; \n}\n\n\n";
 
 },{}],3:[function(require,module,exports){
 module.exports = "\n\nvarying vec3 vNormal;\nvarying vec2 vUv;\n\nvoid main() {\n  vUv = uv; \n  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}";
